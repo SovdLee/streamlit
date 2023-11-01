@@ -1,3 +1,4 @@
+!pip install joblib
 
 # 라이브러리 불러오기 
 
@@ -457,87 +458,89 @@ with tab1:
     # ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ 
 
     
-#     # -------------------- 완료시간 저장하기 START-------------------- 
+    # -------------------- 완료시간 저장하기 START-------------------- 
 
 
-#     ## -------------------- ▼ 1-9그룹 완료시간 저장 폼 지정 ▼  --------------------
-#     with **********
-
-#         ## 완료시간 시간표시 cols 구성
-#         ********** # col 나누기
-#         **********
-#             **********
-#         **********
-#             end_time = **********
-
-#         ## 완료시간 저장 버튼
-#         if st.form_submit_button(label='저장하기'):
-#             dispatch_data = pd.read_csv('./119_emergency_dispatch_1.csv', encoding="cp949" )
-#             id_num = list(dispatch_data['ID'].str[1:].astype(int))
-#             max_num = np.max(id_num)
-#             max_id = 'P' + str(max_num)
-#             elapsed = (end_time.hour - input_time.hour)*60 + (end_time.minute - input_time.minute)
-
-#             check_condition1 = (dispatch_data.loc[dispatch_data['ID'] ==max_id, '출동일시'].values[0]  == str(input_date))
-#             check_condition2 = (dispatch_data.loc[dispatch_data['ID']==max_id, '이름'].values[0] == name)
-
-#             ## 마지막 저장 내용과 동일한 경우, 내용을 update 시킴
+    ## -------------------- ▼ 1-9그룹 완료시간 저장 폼 지정 ▼  --------------------
+    
             
-#             if check_condition1 and check_condition2:
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '나이'] = age
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '성별'] = patient_s
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '체온'] = fever
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '수축기 혈압'] = high_blood
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '이완기 혈압'] = low_blood
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '호흡 곤란'] = int(breath_check)
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '간헐성 경련'] = int(convulsion_check)
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '설사'] = int(diarrhea_check)
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '기침'] = int(cough_check)
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '출혈'] = int(bleeding_check)
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '통증'] = int(pain_check)
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '만지면 아프다'] = int(touch_pain_check)
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '무감각'] = int(insensitive_check)
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '마비'] = int(paralysis_check)
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '현기증'] = int(dizziness_check)
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '졸도'] = int(swoon_check)
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '말이 어눌해졌다'] = int(inarticulate_check)
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '시력이 흐려짐'] = int(blurred_check)
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '중증질환'] = special_m
-#                 dispatch_data.loc[dispatch_data['ID'] == max_id, '이송 시간'] = int(elapsed)
+    with st.form(key='last'):
 
-#             else: # 새로운 출동 이력 추가하기
-#                 new_id = 'P' + str(max_num+1)
-#                 new_data = {
-#                     "ID" : [new_id],
-#                     "출동일시" : [str(input_date)],
-#                     "이름" : [name],
-#                     "성별" : [patient_s],
-#                     "나이" : [age],
-#                     "체온": [fever],
-#                     "수축기 혈압": [high_blood],
-#                     "이완기 혈압": [low_blood],
-#                     "호흡 곤란": [int(breath_check)],
-#                     "간헐성 경련": [int(convulsion_check)],
-#                     "설사": [int(diarrhea_check)],
-#                     "기침": [int(cough_check)],
-#                     "출혈": [int(bleeding_check)],
-#                     "통증": [int(pain_check)],
-#                     "만지면 아프다": [int(touch_pain_check)],
-#                     "무감각": [int(insensitive_check)],
-#                     "마비": [int(paralysis_check)],
-#                     "현기증": [int(dizziness_check)],
-#                     "졸도": [int(swoon_check)],
-#                     "말이 어눌해졌다": [int(inarticulate_check)],
-#                     "시력이 흐려짐": [int(blurred_check)],
-#                     "중증질환": [special_m],
-#                     "이송 시간" : [int(elapsed)]
-#                 }
+        ## 완료시간 시간표시 cols 구성
+        col810, col811 = st.columns([0.1, 0.6])  # col 나누기
+        with col810:
+            st.info('완료시간')
+        with col811:
+            end_time = st.time_input("완료 시간", label_visibility="collapsed")
 
-#                 new_df= pd.DataFrame(new_data)
-#                 dispatch_data = pd.concat([dispatch_data, new_df], axis=0, ignore_index=True)
+        ## 완료시간 저장 버튼
+        if st.form_submit_button(label='저장하기'):
+            dispatch_data = pd.read_csv('./119_emergency_dispatch_1.csv', encoding="cp949" )
+            id_num = list(dispatch_data['ID'].str[1:].astype(int))
+            max_num = np.max(id_num)
+            max_id = 'P' + str(max_num)
+            elapsed = (end_time.hour - input_time.hour)*60 + (end_time.minute - input_time.minute)
 
-#             dispatch_data.to_csv('./119_emergency_dispatch_1.csv', encoding="cp949", index=False)
+            check_condition1 = (dispatch_data.loc[dispatch_data['ID'] ==max_id, '출동일시'].values[0]  == str(input_date))
+            check_condition2 = (dispatch_data.loc[dispatch_data['ID']==max_id, '이름'].values[0] == name)
 
-#     # -------------------- 완료시간 저장하기 END-------------------- 
+            ## 마지막 저장 내용과 동일한 경우, 내용을 update 시킴
+            
+            if check_condition1 and check_condition2:
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '나이'] = age
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '성별'] = patient_s
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '체온'] = fever
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '수축기 혈압'] = high_blood
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '이완기 혈압'] = low_blood
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '호흡 곤란'] = int(breath_check)
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '간헐성 경련'] = int(convulsion_check)
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '설사'] = int(diarrhea_check)
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '기침'] = int(cough_check)
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '출혈'] = int(bleeding_check)
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '통증'] = int(pain_check)
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '만지면 아프다'] = int(touch_pain_check)
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '무감각'] = int(insensitive_check)
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '마비'] = int(paralysis_check)
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '현기증'] = int(dizziness_check)
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '졸도'] = int(swoon_check)
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '말이 어눌해졌다'] = int(inarticulate_check)
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '시력이 흐려짐'] = int(blurred_check)
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '중증질환'] = special_m
+                dispatch_data.loc[dispatch_data['ID'] == max_id, '이송 시간'] = int(elapsed)
 
-# # -------------------- Streamlit 웹 화면 구성 End --------------------
+            else: # 새로운 출동 이력 추가하기
+                new_id = 'P' + str(max_num+1)
+                new_data = {
+                    "ID" : [new_id],
+                    "출동일시" : [str(input_date)],
+                    "이름" : [name],
+                    "성별" : [patient_s],
+                    "나이" : [age],
+                    "체온": [fever],
+                    "수축기 혈압": [high_blood],
+                    "이완기 혈압": [low_blood],
+                    "호흡 곤란": [int(breath_check)],
+                    "간헐성 경련": [int(convulsion_check)],
+                    "설사": [int(diarrhea_check)],
+                    "기침": [int(cough_check)],
+                    "출혈": [int(bleeding_check)],
+                    "통증": [int(pain_check)],
+                    "만지면 아프다": [int(touch_pain_check)],
+                    "무감각": [int(insensitive_check)],
+                    "마비": [int(paralysis_check)],
+                    "현기증": [int(dizziness_check)],
+                    "졸도": [int(swoon_check)],
+                    "말이 어눌해졌다": [int(inarticulate_check)],
+                    "시력이 흐려짐": [int(blurred_check)],
+                    "중증질환": [special_m],
+                    "이송 시간" : [int(elapsed)]
+                }
+
+                new_df= pd.DataFrame(new_data)
+                dispatch_data = pd.concat([dispatch_data, new_df], axis=0, ignore_index=True)
+
+            dispatch_data.to_csv('./119_emergency_dispatch_1.csv', encoding="cp949", index=False)
+
+    # -------------------- 완료시간 저장하기 END-------------------- 
+
+# -------------------- Streamlit 웹 화면 구성 End --------------------
