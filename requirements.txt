@@ -6,3 +6,4 @@ tensorflow==2.13.1
 keras==2.13.1
 streamlit_folium
 geopy
+lxml
