@@ -2,5 +2,6 @@ joblib
 haversine
 branca
 plotly.express
-keras==2.6.0
-tensorflow
+tensorflow==2.13.1
+keras==2.13.1
+
