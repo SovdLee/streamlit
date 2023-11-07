@@ -2,3 +2,4 @@
 [theme]
 primaryColor="green" 			# theme
 secondaryBackgroundColor="red" 		# side bar
+font = "Helvetica Neue"
