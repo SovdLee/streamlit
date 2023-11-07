@@ -5,13 +5,6 @@ import plotly.express as px
 # px 모듈이 없다고 에러가 나는 경우에만 아래 방법으로 plotly 라이브러리 설치
 # File > New > Terminal 선택 후, 창에 다음 구분 실행 pip install plotly 
 
-st.markdown(
-    """
-    <link rel="stylesheet" type="text/css" href="https://cdn.pixabay.com/photo/2018/06/17/20/35/chain-3481377_1280.jpg">
-    """,
-    unsafe_allow_html=True
-)
-
 
 st.header('Unit 3. Streamlit Simple chart')
 
